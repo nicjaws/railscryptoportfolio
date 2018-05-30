@@ -1,0 +1,26 @@
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">Crypto Currency look up</h3>
+  </div>
+  <div class="panel-body">
+<br/>
+
+<%= form_tag home_lookup_path, :method => 'POST' do %>
+    <%= text_field_tag 'sym', nil, placeholder: 'Enter Crypto Symbol', size: 50, class: "form-control" %>
+    <%= submit_tag 'Lookup Stock Quote', class: "btn btn-warning" %>
+    
+    <br/><br/>
+    
+
+<% @symbol %> 
+    <% for x in @lookup_coin %>
+        <% if @symbol == x["symbol"] %>
+            <%= x["name"] %>: $<%= x["price_usd"] %><br/>
+            Rank: <%= x["rank"] %> <br/>
+            Percentage Change 24h: <%= x["percent_change_24h"] %><br/>
+            Volume last 24: $<%= x["24h_volume_usd"] %> <br/><br/>
+        <% end %>
+    <% end %>
+<% end %>
+
+</div>
